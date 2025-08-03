@@ -4,5 +4,5 @@ node_modules/
 # Prisma generated files
 /src/generated/prisma
 
-# Enviroment variables
+# Environment variables
 .env
