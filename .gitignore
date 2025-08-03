@@ -1,4 +1,8 @@
 # deps
 node_modules/
 
+# Prisma generated files
 /src/generated/prisma
+
+# Environment variables
+.env
