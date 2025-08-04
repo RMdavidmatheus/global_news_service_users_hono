@@ -2,11 +2,11 @@ import { z } from "@hono/zod-openapi";
 
 // User Profile Data Schema
 export const UserProfileDataSchema = z.object({
-  fisrt_name: z.string().openapi({
+  first_name: z.string().openapi({
     description: "The first name of the user",
     example: "John",
   }),
-  second_name: z.string().openapi({
+  second_name: z.string().optional().nullable().openapi({
     description: "The second name of the user",
     example: "Doe",
   }),
@@ -14,7 +14,7 @@ export const UserProfileDataSchema = z.object({
     description: "The first last name of the user",
     example: "Doe",
   }),
-  second_last_name: z.string().openapi({
+  second_last_name: z.string().optional().nullable().openapi({
     description: "The second last name of the user",
     example: "Doe",
   }),
@@ -35,7 +35,7 @@ export const UserProfileDataSchema = z.object({
     example: "Male",
   }),
   profile_picture: z.string().optional().nullable().openapi({
-    description: "La foto de perfil del usuario",
+    description: "The profile picture of the user",
     example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
   }),
 }).openapi('User Profile Data Model');

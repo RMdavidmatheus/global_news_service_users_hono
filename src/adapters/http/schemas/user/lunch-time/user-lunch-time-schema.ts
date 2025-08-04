@@ -6,7 +6,7 @@ export const UserLunchTimeSchema = z.object({
     description: "Whether the user is lunching",
     example: false,
   }),
-  schedule_user: z.enum(["N","D"]).openapi({
+  schedule_user: z.enum(["N", "D", "F"]).openapi({
     description: "The schedule of the user",
     example: "N",
   }),

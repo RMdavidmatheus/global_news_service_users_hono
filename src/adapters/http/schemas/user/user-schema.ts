@@ -3,7 +3,7 @@ import { UserLunchTimeSchema } from "./lunch-time/user-lunch-time-schema";
 import { UserProfileDataSchema } from "./profile-data/user-profile-data-schema";
 
 // User Schema
-export const userSchema = z.object({
+export const UserSchema = z.object({
   id: z.uuid().openapi({
     description: "The unique identifier for the user",
     example: "123e4567-e89b-12d3-a456-426614174000",
@@ -12,7 +12,7 @@ export const userSchema = z.object({
     description: "Whether the user is an admin",
     example: false,
   }),
-  userName: z.string().openapi({
+  user_name: z.string().openapi({
     description: "The username for the user",
     example: "JDOE",
   }),
@@ -24,7 +24,7 @@ export const userSchema = z.object({
     description: "The number of attemps to login for the user",
     example: 0,
   }),
-  lunchTime: UserLunchTimeSchema.openapi({
+  lunch_time: UserLunchTimeSchema.openapi({
     description: "The lunch time of the user",
     example: {
       is_lunching: false,
@@ -34,7 +34,7 @@ export const userSchema = z.object({
       elapsed_time: "1 hour and 30 minutes",
     },
   }),
-  profileData: UserProfileDataSchema.openapi({
+  profile_data: UserProfileDataSchema.openapi({
     description: "The profile data of the user",
     example: {
       fisrt_name: "John",
@@ -47,5 +47,17 @@ export const userSchema = z.object({
       gender: "Male",
       profile_picture: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA",
     },
+  }),
+  created_at: z.string().openapi({
+    description: "The date and time the user was created",
+    example: "2021-01-01T00:00:00.000Z",
+  }),
+  updated_at: z.string().optional().nullable().openapi({
+    description: "The date and time the user was updated",
+    example: "2021-01-01T00:00:00.000Z",
+  }),
+  deleted_at: z.string().optional().nullable().openapi({
+    description: "The date and time the user was deleted",
+    example: "2021-01-01T00:00:00.000Z",
   }),
 }).openapi('User Model');
