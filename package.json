@@ -7,13 +7,17 @@
     "@hono/zod-openapi": "^1.0.2",
     "@prisma/client": "^6.13.0",
     "@scalar/hono-api-reference": "^0.9.13",
+    "bcrypt": "^6.0.0",
     "hono": "^4.8.12",
+    "jsonwebtoken": "^9.0.2",
     "luxon": "^3.7.1",
     "prisma": "^6.13.0",
     "zod": "^4.0.14"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/luxon": "^3.7.1"
   }
 }

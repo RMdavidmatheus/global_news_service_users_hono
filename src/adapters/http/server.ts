@@ -3,6 +3,7 @@ import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 import { Scalar } from "@scalar/hono-api-reference";
 import { userApp } from "./routes/user/user-routes";
+import { authApp } from "./routes/auth/auth-routes";
 
 // Hono API
 const app = new OpenAPIHono();
@@ -53,6 +54,7 @@ app.get("/documentation", Scalar({ url: "/doc" }));
 
 // Routes
 app.route("/users", userApp);
+app.route("/auth", authApp);
 
 // Start Server
 export default {
