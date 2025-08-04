@@ -1,3 +1,4 @@
+// Global utility class
 export class GlobalUtil {
   // Capitalize the first letter of a string
   static capitalizeFirstLetter = (str: string) => {

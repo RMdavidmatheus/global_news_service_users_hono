@@ -7,6 +7,7 @@ import { UserLunchTimeModel } from "../../domain/user/lunch-time/user-lunch-time
 import { UserLunchTimeBody } from "../../domain/user/lunch-time/user-lunch-time-body";
 import { UserProfileDataModel } from "../../domain/user/profile-data/user-profile-data-model";
 import { GlobalUtil } from "../../shared/global/global-util";
+import { AuthUtil } from "../../shared/auth/auth-util";
 
 export class UserService {
   // Constructor
@@ -18,6 +19,9 @@ export class UserService {
       const response: UserDbInterface[] = await this.prisma.users.findMany({
         where: {
           isActive: true,
+        },
+        orderBy: {
+          userName: "asc",
         },
       });
 
@@ -56,7 +60,7 @@ export class UserService {
       const response: UserDbInterface = await this.prisma.users.create({
         data: {
           userName: body.user_name.toUpperCase(),
-          password: body.password,
+          password: await AuthUtil.hashPassword(body.password),
           lunchTime: undefined,
           profileData: {
             first_name: GlobalUtil.capitalizeFirstLetter(
