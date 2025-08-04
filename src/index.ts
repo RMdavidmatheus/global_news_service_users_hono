@@ -1,5 +1,7 @@
-import { Hono } from 'hono'
+import server from "./adapters/http/server";
 
-const app = new Hono()
+// App
+const app = server;
 
-export default app
+// Export app
+export default app;
