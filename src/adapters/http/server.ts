@@ -2,6 +2,7 @@ import { OpenAPIHono } from '@hono/zod-openapi'
 import { logger } from 'hono/logger'
 import { cors } from 'hono/cors'
 import { Scalar } from '@scalar/hono-api-reference'
+import { userApp } from './routes/user/user-routes';
 
 // Hono API
 const app = new OpenAPIHono();
@@ -48,6 +49,7 @@ app.doc('/doc', openApiDoc);
 app.get('/documentation', Scalar({url: '/doc'}))
 
 // Routes
+app.route('/users', userApp)
 
 // Start Server
 export default {
