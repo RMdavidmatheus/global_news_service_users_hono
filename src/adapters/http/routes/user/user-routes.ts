@@ -60,7 +60,7 @@ const getAllUsers = createRoute({
       description: "Users retrieved successfully",
     },
     204: {
-      description: "No content",
+      description: "No users found",
     },
     500: {
       content: {
@@ -128,8 +128,18 @@ const getUserById = createRoute({
       },
       description: "User retrieved successfully",
     },
-    204: {
-      description: "No content",
+    404: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message: "No user found",
+          },
+        },
+      },
+      description: "No user found",
     },
     500: {
       content: {
@@ -592,7 +602,7 @@ userApp.openapi(getUserById, async (c) => {
     const { id } = c.req.valid("param");
     const response = await userService.getUserById(id);
 
-    if (!response) return c.newResponse(null, 204);
+    if (!response) return c.json({ message: "No user found" }, 404);
 
     return c.json(response, 200);
   } catch (error) {
