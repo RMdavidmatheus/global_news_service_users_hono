@@ -64,12 +64,12 @@ export class UserUtil {
 
   static calculateFinalTime(schedule: string): number {
     switch (schedule.toUpperCase()) {
-        case "N":
-            return 30;
-        case "D":
-            return 60;
-        default:
-            return 0;
+      case "N":
+        return 30;
+      case "D":
+        return 60;
+      default:
+        return 0;
     }
   }
 }

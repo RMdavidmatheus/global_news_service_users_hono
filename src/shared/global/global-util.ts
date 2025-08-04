@@ -1,6 +1,5 @@
 export class GlobalUtil {
-
-    // Capitalize the first letter of a string
+  // Capitalize the first letter of a string
   static capitalizeFirstLetter = (str: string) => {
     if (!str) return str;
     const lower = str.toLocaleLowerCase("es-ES");

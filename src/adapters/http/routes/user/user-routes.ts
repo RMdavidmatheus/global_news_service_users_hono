@@ -319,7 +319,7 @@ const patchPassword = createRoute({
           schema: z.object({
             password: z.string().min(8).max(20).openapi({
               description: "The password for the user",
-              example: '12345678',
+              example: "12345678",
             }),
           }),
         },
@@ -348,7 +348,8 @@ const patchPassword = createRoute({
             message: z.string(),
           }),
           example: {
-            message: "Error updating password with id: 123e4567-e89b-12d3-a456-426614174000",
+            message:
+              "Error updating password with id: 123e4567-e89b-12d3-a456-426614174000",
           },
         },
       },
@@ -372,200 +373,206 @@ const patchPassword = createRoute({
 
 // Patch attemps route
 const patchAttemps = createRoute({
-    method: "patch",
-    path: "/user/:id/attemps",
-    summary: "Patch attemps",
-    description: "This route is used to patch attemps",
-    tags: ["User"],
-    request: {
-        params: z.object({
-            id: z.uuid().openapi({
-                description: "The id of the user",
-                example: "123e4567-e89b-12d3-a456-426614174000",
+  method: "patch",
+  path: "/user/:id/attemps",
+  summary: "Patch attemps",
+  description: "This route is used to patch attemps",
+  tags: ["User"],
+  request: {
+    params: z.object({
+      id: z.uuid().openapi({
+        description: "The id of the user",
+        example: "123e4567-e89b-12d3-a456-426614174000",
+      }),
+    }),
+    body: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            attemps: z.number().openapi({
+              description: "The attemps of the user",
+              example: 0,
             }),
-        }),
-        body: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        attemps: z.number().openapi({
-                            description: "The attemps of the user",
-                            example: 0,
-                        }),
-                    }),
-                },
-            },
+          }),
         },
+      },
     },
-    responses: {
-        200: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Attemps updated successfully with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "Attemps updated successfully",
+  },
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "Attemps updated successfully with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
         },
-        400: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Error updating attemps with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "Attemps not updated",
-        },
-        500: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Internal server error",
-                    },
-                },
-            },
-            description: "Internal server error",
-        },
+      },
+      description: "Attemps updated successfully",
     },
+    400: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "Error updating attemps with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
+        },
+      },
+      description: "Attemps not updated",
+    },
+    500: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message: "Internal server error",
+          },
+        },
+      },
+      description: "Internal server error",
+    },
+  },
 });
 
 // Patch lunch time route
 const patchLunchTime = createRoute({
-    method: "patch",
-    path: "/user/:id/lunch-time",
-    summary: "Patch lunch time",
-    description: "This route is used to patch lunch time",
-    tags: ["User"],
-    request: {
-        params: z.object({
-            id: z.uuid().openapi({
-                description: "The id of the user",
-                example: "123e4567-e89b-12d3-a456-426614174000",
-            }),
-        }),
-        body: {
-            content: {
-                "application/json": {
-                    schema: UserLunchTimeBodySchema,
-                    example: {
-                        is_lunching: false,
-                        schedule_user: "N",
-                    },
-                },
-            },
+  method: "patch",
+  path: "/user/:id/lunch-time",
+  summary: "Patch lunch time",
+  description: "This route is used to patch lunch time",
+  tags: ["User"],
+  request: {
+    params: z.object({
+      id: z.uuid().openapi({
+        description: "The id of the user",
+        example: "123e4567-e89b-12d3-a456-426614174000",
+      }),
+    }),
+    body: {
+      content: {
+        "application/json": {
+          schema: UserLunchTimeBodySchema,
+          example: {
+            is_lunching: false,
+            schedule_user: "N",
+          },
         },
+      },
     },
-    responses: {
-        200: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Lunch time updated successfully with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "Lunch time updated successfully",
+  },
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "Lunch time updated successfully with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
         },
-        400: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Error updating lunch time with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "Lunch time not updated",
-        },
-        500: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Internal server error",
-                    },
-                },
-            },
-            description: "Internal server error",
-        },
+      },
+      description: "Lunch time updated successfully",
     },
+    400: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "Error updating lunch time with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
+        },
+      },
+      description: "Lunch time not updated",
+    },
+    500: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message: "Internal server error",
+          },
+        },
+      },
+      description: "Internal server error",
+    },
+  },
 });
 
 // Delete user route
 const deleteUser = createRoute({
-    method: "delete",
-    path: "/user/delete/:id",
-    summary: "Delete a user",
-    description: "This route is used to delete a user",
-    tags: ["User"],
-    request: {
-        params: z.object({
-            id: z.uuid().openapi({
-                description: "The id of the user",
-                example: "123e4567-e89b-12d3-a456-426614174000",
-            }),
-        }),
+  method: "delete",
+  path: "/user/delete/:id",
+  summary: "Delete a user",
+  description: "This route is used to delete a user",
+  tags: ["User"],
+  request: {
+    params: z.object({
+      id: z.uuid().openapi({
+        description: "The id of the user",
+        example: "123e4567-e89b-12d3-a456-426614174000",
+      }),
+    }),
+  },
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "User deleted successfully with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
+        },
+      },
+      description: "User deleted successfully",
     },
-    responses: {
-        200: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "User deleted successfully with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "User deleted successfully",
+    400: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message:
+              "Error deleting user with id: 123e4567-e89b-12d3-a456-426614174000",
+          },
         },
-        400: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Error deleting user with id: 123e4567-e89b-12d3-a456-426614174000",
-                    },
-                },
-            },
-            description: "User not deleted",
-        },
-        500: {
-            content: {
-                "application/json": {
-                    schema: z.object({
-                        message: z.string(),
-                    }),
-                    example: {
-                        message: "Internal server error",
-                    },
-                },
-            },
-            description: "Internal server error",
-        },
+      },
+      description: "User not deleted",
     },
-})
+    500: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            message: z.string(),
+          }),
+          example: {
+            message: "Internal server error",
+          },
+        },
+      },
+      description: "Internal server error",
+    },
+  },
+});
 
 // Get all users controller
 userApp.openapi(getAllUsers, async (c) => {
@@ -637,8 +644,12 @@ userApp.openapi(patchPassword, async (c) => {
     const body = c.req.valid("json");
     const response = await userService.patchPassword(id, body.password);
 
-    if (!response) return c.json({ message: `Error updating password with id: ${id}` }, 400);
-    return c.json({ message: `Password updated successfully with id: ${response.id}` }, 200);
+    if (!response)
+      return c.json({ message: `Error updating password with id: ${id}` }, 400);
+    return c.json(
+      { message: `Password updated successfully with id: ${response.id}` },
+      200
+    );
   } catch (error) {
     console.error("❌ Error updating password", error);
     return c.json({ message: `Internal server error` }, 500);
@@ -647,44 +658,59 @@ userApp.openapi(patchPassword, async (c) => {
 
 // Patch attemps controller
 userApp.openapi(patchAttemps, async (c) => {
-    try {
-        const { id } = c.req.valid("param");
-        const body = c.req.valid("json");
-        const response = await userService.patchAttemps(id, body.attemps);
+  try {
+    const { id } = c.req.valid("param");
+    const body = c.req.valid("json");
+    const response = await userService.patchAttemps(id, body.attemps);
 
-        if (!response) return c.json({ message: `Error updating attemps with id: ${id}` }, 400);
-        return c.json({ message: `Attemps updated successfully with id: ${response.id}` }, 200);
-    } catch (error) {
-        console.error("❌ Error updating attemps", error);
-        return c.json({ message: `Internal server error` }, 500);
-    }
+    if (!response)
+      return c.json({ message: `Error updating attemps with id: ${id}` }, 400);
+    return c.json(
+      { message: `Attemps updated successfully with id: ${response.id}` },
+      200
+    );
+  } catch (error) {
+    console.error("❌ Error updating attemps", error);
+    return c.json({ message: `Internal server error` }, 500);
+  }
 });
 
 // Patch lunch time controller
 userApp.openapi(patchLunchTime, async (c) => {
-    try {
-        const { id } = c.req.valid("param");
-        const body = c.req.valid("json");
-        const response = await userService.patchLunchTime(id, body);
+  try {
+    const { id } = c.req.valid("param");
+    const body = c.req.valid("json");
+    const response = await userService.patchLunchTime(id, body);
 
-        if (!response) return c.json({ message: `Error updating lunch time with id: ${id}` }, 400);
-        return c.json({ message: `Lunch time updated successfully with id: ${response.id}` }, 200);
-    } catch (error) {
-        console.error("❌ Error updating lunch time", error);
-        return c.json({ message: `Internal server error` }, 500);
-    }
+    if (!response)
+      return c.json(
+        { message: `Error updating lunch time with id: ${id}` },
+        400
+      );
+    return c.json(
+      { message: `Lunch time updated successfully with id: ${response.id}` },
+      200
+    );
+  } catch (error) {
+    console.error("❌ Error updating lunch time", error);
+    return c.json({ message: `Internal server error` }, 500);
+  }
 });
 
 // Delete user controller
 userApp.openapi(deleteUser, async (c) => {
-    try {
-        const { id } = c.req.valid("param");
-        const response = await userService.deleteUser(id);
+  try {
+    const { id } = c.req.valid("param");
+    const response = await userService.deleteUser(id);
 
-        if (!response) return c.json({ message: `Error deleting user with id: ${id}` }, 400);
-        return c.json({ message: `User deleted successfully with id: ${response.id}` }, 200);
-    } catch (error) {
-        console.error("❌ Error deleting user", error);
-        return c.json({ message: `Internal server error` }, 500);
-    }
-})
+    if (!response)
+      return c.json({ message: `Error deleting user with id: ${id}` }, 400);
+    return c.json(
+      { message: `User deleted successfully with id: ${response.id}` },
+      200
+    );
+  } catch (error) {
+    console.error("❌ Error deleting user", error);
+    return c.json({ message: `Internal server error` }, 500);
+  }
+});
