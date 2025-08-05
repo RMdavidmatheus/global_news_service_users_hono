@@ -11,12 +11,12 @@ import { AuthUtil } from "../../shared/auth/auth-util";
 
 export class UserService {
   // Constructor
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly db: PrismaClient) {}
 
   // Get all users
   async getAllUsers(): Promise<UserModel[]> {
     try {
-      const response: UserDbInterface[] = await this.prisma.users.findMany({
+      const response: UserDbInterface[] = await this.db.users.findMany({
         where: {
           isActive: true,
         },
@@ -38,7 +38,7 @@ export class UserService {
   async getUserById(id: string): Promise<UserModel | null> {
     try {
       const response: UserDbInterface | null =
-        await this.prisma.users.findUnique({
+        await this.db.users.findUnique({
           where: {
             id: id,
             isActive: true,
@@ -57,7 +57,7 @@ export class UserService {
   // Create user
   async createUser(body: UserBody): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface = await this.prisma.users.create({
+      const response: UserDbInterface = await this.db.users.create({
         data: {
           userName: body.user_name.toUpperCase(),
           password: await AuthUtil.hashPassword(body.password),
@@ -103,7 +103,7 @@ export class UserService {
     body: UserProfileDataModel
   ): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface | null = await this.prisma.users.update({
+      const response: UserDbInterface | null = await this.db.users.update({
         where: {
           id: id,
           isActive: true,
@@ -123,9 +123,10 @@ export class UserService {
     }
   }
 
+  // Patch password
   async patchPassword(id: string, password: string): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface | null = await this.prisma.users.update({
+      const response: UserDbInterface | null = await this.db.users.update({
         where: {
           id: id,
           isActive: true,
@@ -145,9 +146,10 @@ export class UserService {
     }
   }
 
+  // Patch attemps
   async patchAttemps(id: string, attemps: number): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface | null = await this.prisma.users.update({
+      const response: UserDbInterface | null = await this.db.users.update({
         where: {
           id: id,
           isActive: true,
@@ -167,12 +169,13 @@ export class UserService {
     }
   }
 
+  // Patch lunch time
   async patchLunchTime(
     id: string,
     body: UserLunchTimeBody
   ): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface | null = await this.prisma.users.update({
+      const response: UserDbInterface | null = await this.db.users.update({
         where: {
           id: id,
           isActive: true,
@@ -207,9 +210,10 @@ export class UserService {
     }
   }
 
+  // Delete user
   async deleteUser(id: string): Promise<UserModel | null> {
     try {
-      const response: UserDbInterface | null = await this.prisma.users.update({
+      const response: UserDbInterface | null = await this.db.users.update({
         where: {
           id: id,
           isActive: true,

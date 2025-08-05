@@ -5,11 +5,11 @@ import { PrismaClient } from "../../generated/prisma";
 import { AuthUtil } from "../../shared/auth/auth-util";
 
 export class AuthService {
-    constructor(private readonly prisma: PrismaClient) {}
+    constructor(private readonly db: PrismaClient) {}
 
     async login(body: AuthBody): Promise<string | null>{
         try {
-            const response:UserDbInterface | null = await this.prisma.users.findUnique({
+            const response:UserDbInterface | null = await this.db.users.findUnique({
                 where:{
                     userName: body.user_name,
                     isActive: true,
